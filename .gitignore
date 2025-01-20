@@ -2,6 +2,8 @@
 /.build
 /Packages
 /Package.resolved
+/kernel8.elf
+/kernel8.img
 xcuserdata/
 DerivedData/
 .swiftpm/configuration/registries.json

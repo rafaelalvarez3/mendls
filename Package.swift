@@ -1,24 +1,35 @@
-// swift-tools-version: 6.2
+// swift-tools-version: 6.1
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
 let package = Package(
-    name: "mendls",
-    products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
-        .library(
-            name: "mendls",
-            targets: ["mendls"]),
-    ],
-    targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
-        .target(
-            name: "mendls"),
-        .testTarget(
-            name: "mendlsTests",
-            dependencies: ["mendls"]
-        ),
-    ]
+  name: "mendls",
+  platforms: [
+    .macOS(.v14)
+  ],
+  products: [
+    .library(
+      name: "MainApp",
+      type: .static,
+      targets: ["MainApp"])
+  ],
+  dependencies: [
+    .package(
+      url: "https://github.com/apple/swift-mmio.git",
+      branch: "swift-embedded-examples")
+  ],
+  targets: [
+    .target(
+      name: "MainApp",
+      dependencies: [
+        .product(name: "MMIO", package: "swift-mmio")
+      ],
+      swiftSettings: [
+        .enableExperimentalFeature("Embedded"),
+        .unsafeFlags(["-Xfrontend", "-function-sections"]),
+      ]
+    ),
+    .target(name: "Support"),
+  ]
 )
