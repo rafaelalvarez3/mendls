@@ -7,4 +7,11 @@
 // 
 //--------------------------------------------------------------------------------------//
 
+// - These are notes to the linker. - //
 
+.section ".text.boot"   // Where this code belongs in the compiled binary.
+                        // 
+.global _start          // This specifies that _start is a name that should
+                        // be visible from outside of the assembly file.
+
+// - These are the first instructions of the kernel. - //
