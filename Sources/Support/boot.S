@@ -1,41 +1,51 @@
-//===----------------------------------------------------------------------===//
-//
-// This source file is part of the Swift open source project
-//
-// Copyright (c) 2024 Apple Inc. and the Swift project authors.
-// Licensed under Apache License v2.0 with Runtime Library Exception
-//
-// See https://swift.org/LICENSE.txt for license information
-//
-//===----------------------------------------------------------------------===//
+//* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+//*
+//* Mendl's Bootstrap
+//* Created by Rafael Alvarez on January 21, 2025
+//* Abstract: Mendl's Bootstrap (boot.S) is the first thing that the hardware executes
+//* in the kernel. This sets up the Swift runtime environment by jumping to Kernel.swift
+//* 
 
-.section ".text.boot"
+//* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+//*
+//* These are notes to the linker.
+//* 
+                        //*
+.section ".text.boot"   //* This specifies where this code belongs in the 
+                        //* compiled binary.
+                        //* 
+.global _start          //* This specifies that _start is a name that should
+                        //* be visible from outside of the assembly file.
+                        //* 
 
-.global _start
+//* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+//*
+//* These are the first instructions of the kernel. They send 3 of the 4 cores to halt.
+//* This effectively shuts them down to simplify the development process.
+//*
 
 _start:
-    // Check processor ID is zero (executing on main core), else hang
-    mrs     x1, mpidr_el1
+    mrs     x1, mpidr_e1
     and     x1, x1, #3
     cbz     x1, 2f
-    // We're not on the main core, so hang in an infinite wait loop
-1:  wfe
-    b       1b
-2:  // We're on the main core!
 
-    // Set stack to start below our code
+1:
+    wfe
+    b       1b
+
+2:
     ldr     x1, =_start
     mov     sp, x1
+    
+    ldr     x1, =__bss_start
+    ldr     w2, =__bss_size
 
-    // Clean the BSS section
-    ldr     x1, =__bss_start     // Start address
-    ldr     w2, =__bss_size      // Size of the section
-3:  cbz     w2, 4f               // Quit loop if zero
+3:
+    cbz     w2, 4f
     str     xzr, [x1], #8
     sub     w2, w2, #1
-    cbnz    w2, 3b               // Loop if non-zero
+    cbnz    w2, 3b
 
-    // Jump to Swift!
-4:  bl      main
-    // Halt if Swift returns
+4:
+    bl      main
     b       1b
