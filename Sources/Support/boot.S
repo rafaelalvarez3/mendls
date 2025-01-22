@@ -10,13 +10,13 @@
 //*
 //* These are notes to the linker.
 //* 
-                        //*
-.section ".text.boot"   //* This specifies where this code belongs in the 
-                        //* compiled binary.
-                        //* 
-.global _start          //* This specifies that _start is a name that should
-                        //* be visible from outside of the assembly file.
-                        //* 
+                                //*
+.section ".text.boot"           //* This specifies where this code belongs in the 
+                                //* compiled binary.
+                                //* 
+.global _start                  //* This specifies that _start is a name that should
+                                //* be visible from outside of the assembly file.
+                                //* 
 
 //* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 //*
@@ -24,15 +24,25 @@
 //* This effectively shuts them down to simplify the development process.
 //*
 
-_start:
-    mrs     x1, mpidr_e1
-    and     x1, x1, #3
-    cbz     x1, 2f
-
-1:
-    wfe
-    b       1b
-
+_start:                         //*
+    mrs     x1, mpidr_e1        //* The mrs (move from system register) instruction
+    and     x1, x1, #3          //* reads the system register into a general purpose    
+    cbz     x1, 2f              //* register.
+                                //*
+                                //* The mpidr_e1 (multiprocessor affinity register)
+                                //* provides an additional PE (processing element)
+                                //* identification mechanism.
+                                //* 
+                                //* This checks to see if the processor ID is 0,
+                                //* so the kernel can execute on the main core.
+                                //* Otherwise it will hang.
+                                //*
+1:                              //*
+    wfe                         //* We are not executing on the main core, so the
+    b       1b                  //* kernel will hang in an infinite wait loop.
+                                //* Once the kernel makes it to the next instruction,
+                                //* it will be executing on the main core.
+                                //*
 2:
     ldr     x1, =_start
     mov     sp, x1
