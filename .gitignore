@@ -4,6 +4,7 @@
 /Package.resolved
 /kernel8.elf
 /kernel8.img
+/toolchain.sh
 xcuserdata/
 DerivedData/
 .swiftpm/configuration/registries.json
