@@ -25,11 +25,11 @@
 //*
 
 _start:                         //*
-    mrs     x1, mpidr_e1        //* The mrs (move from system register) instruction
+    mrs     x1, mpidr_el1       //* The mrs (move from system register) instruction
     and     x1, x1, #3          //* reads the system register into a general purpose    
     cbz     x1, 2f              //* register.
                                 //*
-                                //* The mpidr_e1 (multiprocessor affinity register)
+                                //* The mpidr_el1 (multiprocessor affinity register)
                                 //* provides an additional PE (processing element)
                                 //* identification mechanism.
                                 //* 
