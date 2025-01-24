@@ -25,4 +25,4 @@ $(BUILDROOT)/libMainApp.a $(BUILDROOT)/Support.build/boot.S.o:
 	@echo ""
 
 clean:
-	rm -rf kernel8.elf kernel8.img .build
+	rm -rf kernel8.elf kernel8.img
