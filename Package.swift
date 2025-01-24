@@ -10,9 +10,9 @@ let package = Package(
   ],
   products: [
     .library(
-      name: "MainApp",
+      name: "Kernel",
       type: .static,
-      targets: ["MainApp"])
+      targets: ["Kernel"])
   ],
   dependencies: [
     .package(
@@ -21,7 +21,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "MainApp",
+      name: "Kernel",
       dependencies: [
         .product(name: "MMIO", package: "swift-mmio")
       ],

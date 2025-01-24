@@ -1,14 +1,3 @@
-//===----------------------------------------------------------------------===//
-//
-// This source file is part of the Swift open source project
-//
-// Copyright (c) 2024 Apple Inc. and the Swift project authors.
-// Licensed under Apache License v2.0 with Runtime Library Exception
-//
-// See https://swift.org/LICENSE.txt for license information
-//
-//===----------------------------------------------------------------------===//
-
 import MMIO
 
 @Register(bitWidth: 32)
@@ -43,13 +32,6 @@ struct GPIO {
   var gpfsel4: Register<GPFSEL4>
 }
 
-
-
-
-
-
-
-
 let gpio = GPIO(unsafeAddress: 0xFE00_0000)
 
 func setLedOutput() {
@@ -74,16 +56,16 @@ func ledOff() {
 }
 
 @main
-struct Main {
-
-  static func main() {
-    setLedOutput()
-
-    while true {
-      ledOn()
-      for _ in 1..<100000 {}  // just a delay
-      ledOff()
-      for _ in 1..<100000 {}  // just a delay
+struct KernelMain {
+    static func main() {
+        setLedOutput()
+        while true {
+            /*
+            ledOn()
+            for _ in 1..<100000 {}  // just a delay
+            ledOff()
+            for _ in 1..<100000 {}  // just a delay
+            */
+        }
     }
-  }
 }
