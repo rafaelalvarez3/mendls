@@ -5,19 +5,20 @@
 //* Abstract: Mendl's Bootstrap (boot.S) is the first thing that the hardware executes
 //* in the kernel. This sets up the Swift runtime environment by jumping to Kernel.swift
 //* 
-
 //* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 //*
 //* These are notes to the linker.
 //* 
                                 //*
-.section ".text.boot"           //* This specifies where this code belongs in the 
-                                //* compiled binary.
-                                //* 
+.section ".text.boot"           //* This specifies that everything defined in boot.S 
+                                //* should go in the .text.boot section of the
+                                //* binary.
+                                //*
 .global _start                  //* This specifies that _start is a name that should
                                 //* be visible from outside of the assembly file.
-                                //* 
-
+                                //* When the kernel is started, execution begins
+                                //* at the function _start.
+                                //*
 //* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 //*
 //* These are the first instructions of the kernel. They send 3 of the 4 cores to halt.
@@ -26,8 +27,8 @@
 
 _start:                         //*
     mrs     x1, mpidr_el1       //* The mrs (move from system register) instruction
-    and     x1, x1, #3          //* reads the system register into a general purpose    
-    cbz     x1, 2f              //* register.
+    and     x1, x1, #3          //* reads the system register (mpidr_el1) into general    
+    cbz     x1, 2f              //* purpose register x1.
                                 //*
                                 //* The mpidr_el1 (multiprocessor affinity register)
                                 //* provides an additional PE (processing element)
@@ -35,14 +36,14 @@ _start:                         //*
                                 //* 
                                 //* This checks to see if the processor ID is 0,
                                 //* so the kernel can execute on the main core.
-                                //* Otherwise it will hang.
-                                //*
-1:                              //*
-    wfe                         //* We are not executing on the main core, so the
-    b       1b                  //* kernel will hang in an infinite wait loop.
-                                //* Once the kernel makes it to the next instruction,
-                                //* it will be executing on the main core.
-                                //*
+                                //* 
+                                //* 
+1:                              //* 
+    wfe                         //* 
+    b       1b                  //* 
+                                //* 
+                                //* 
+                                //* 
 2:
     ldr     x1, =_start
     mov     sp, x1
