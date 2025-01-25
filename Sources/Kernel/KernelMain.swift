@@ -3,22 +3,22 @@ import MMIO
 let gpio = GPIO(unsafeAddress: 0xFE00_0000)
 
 func setLedOutput() {
-  gpio.gpfsel4.modify {
-    // setFunction Select 42 (fsel42) to 001
-    $0.fsel42b1 = true
-    $0.fsel42b2 = false
-    $0.fsel42b3 = false
+  gpio.gpfsel2.modify {
+    // set Function Select 25 (fsel25) to 001
+    $0.fsel25b1 = true
+    $0.fsel25b2 = false
+    $0.fsel25b3 = false
   }
 }
 
 func ledOn() {
-  gpio.gpset1.modify {
+  gpio.gpset0.modify {
     $0.set = true
   }
 }
 
 func ledOff() {
-  gpio.gpclr1.modify {
+  gpio.gpclr0.modify {
     $0.clear = true
   }
 }

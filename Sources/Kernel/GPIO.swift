@@ -1,33 +1,37 @@
 import MMIO
 
 @Register(bitWidth: 32)
-struct GPSET1 {
+struct GPSET0 {
   @ReadWrite(bits: 10..<11, as: Bool.self)
   var set: SET
 }
 
 @Register(bitWidth: 32)
-struct GPCLR1 {
+struct GPCLR0 {
   @ReadWrite(bits: 10..<11, as: Bool.self)
   var clear: CLEAR
 }
 
-@Register(bitWidth: 32)
-struct GPFSEL4 {
-  @ReadWrite(bits: 6..<7, as: Bool.self)
-  var fsel42b1: FSEL42b1
-  @ReadWrite(bits: 7..<8, as: Bool.self)
-  var fsel42b2: FSEL42b2
-  @ReadWrite(bits: 8..<9, as: Bool.self)
-  var fsel42b3: FSEL42b3
-}
+
 
 @RegisterBlock
 struct GPIO {
-  @RegisterBlock(offset: 0x200020)
-  var gpset1: Register<GPSET1>
-  @RegisterBlock(offset: 0x20002c)
-  var gpclr1: Register<GPCLR1>
-  @RegisterBlock(offset: 0x200010)
-  var gpfsel4: Register<GPFSEL4>
+  @RegisterBlock(offset: 0x20001c)
+  var gpset0: Register<GPSET0>
+  @RegisterBlock(offset: 0x200028)
+  var gpclr0: Register<GPCLR0>
+  @RegisterBlock(offset: 0x200008)
+  var gpfsel2: Register<GPFSEL2>
+}
+
+/* GPIO PIN 25 | PHYSICAL PIN 22 */
+
+@Register(bitWidth: 32)
+struct GPFSEL2 {
+  @ReadWrite(bits: 15..<16, as: Bool.self)
+  var fsel25b1: FSEL25b1
+  @ReadWrite(bits: 16..<17, as: Bool.self)
+  var fsel25b2: FSEL25b2
+  @ReadWrite(bits: 17..<18, as: Bool.self)
+  var fsel25b3: FSEL25b3
 }
