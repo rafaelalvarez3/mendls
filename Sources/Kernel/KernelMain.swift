@@ -60,12 +60,10 @@ struct KernelMain {
     static func main() {
         setLedOutput()
         while true {
-            /*
             ledOn()
             for _ in 1..<100000 {}  // just a delay
             ledOff()
             for _ in 1..<100000 {}  // just a delay
-            */
         }
     }
 }
