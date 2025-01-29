@@ -120,6 +120,91 @@ struct GPCLR1 {
 }
 /* ---------------------------------------------------------------------------------- */
 @Register(bitWidth: 32)
+struct GPFSEL0 {
+    /* GPIO PIN 00 | PHYSICAL PIN 27 */
+    @ReadWrite(bits: 0..<1, as: Bool.self)
+    var fsel00b1: FSEL00b1
+    @ReadWrite(bits: 1..<2, as: Bool.self)
+    var fsel00b2: FSEL00b2
+    @ReadWrite(bits: 2..<3, as: Bool.self)
+    var fsel00b3: FSEL00b3
+    
+    /* GPIO PIN 01 | PHYSICAL PIN 28 */
+    @ReadWrite(bits: 3..<4, as: Bool.self)
+    var fsel01b1: FSEL01b1
+    @ReadWrite(bits: 4..<5, as: Bool.self)
+    var fsel01b2: FSEL01b2
+    @ReadWrite(bits: 5..<6, as: Bool.self)
+    var fsel01b3: FSEL01b3
+    
+    /* GPIO PIN 02 | PHYSICAL PIN 03 */
+    @ReadWrite(bits: 6..<7, as: Bool.self)
+    var fsel02b1: FSEL02b1
+    @ReadWrite(bits: 7..<8, as: Bool.self)
+    var fsel02b2: FSEL02b2
+    @ReadWrite(bits: 8..<9, as: Bool.self)
+    var fsel02b3: FSEL02b3
+    
+    /* GPIO PIN 03 | PHYSICAL PIN 05 */
+    @ReadWrite(bits: 9..<10, as: Bool.self)
+    var fsel03b1: FSEL03b1
+    @ReadWrite(bits: 10..<11, as: Bool.self)
+    var fsel03b2: FSEL03b2
+    @ReadWrite(bits: 11..<12, as: Bool.self)
+    var fsel03b3: FSEL03b3
+    
+    /* GPIO PIN 04 | PHYSICAL PIN 07 */
+    @ReadWrite(bits: 12..<13, as: Bool.self)
+    var fsel04b1: FSEL04b1
+    @ReadWrite(bits: 13..<14, as: Bool.self)
+    var fsel04b2: FSEL04b2
+    @ReadWrite(bits: 14..<15, as: Bool.self)
+    var fsel04b3: FSEL04b3
+    
+    /* GPIO PIN 05 | PHYSICAL PIN 29 */
+    @ReadWrite(bits: 15..<16, as: Bool.self)
+    var fsel05b1: FSEL05b1
+    @ReadWrite(bits: 16..<17, as: Bool.self)
+    var fsel05b2: FSEL05b2
+    @ReadWrite(bits: 17..<18, as: Bool.self)
+    var fsel05b3: FSEL05b3
+    
+    /* GPIO PIN 06 | PHYSICAL PIN 31 */
+    @ReadWrite(bits: 18..<19, as: Bool.self)
+    var fsel06b1: FSEL06b1
+    @ReadWrite(bits: 19..<20, as: Bool.self)
+    var fsel06b2: FSEL06b2
+    @ReadWrite(bits: 20..<21, as: Bool.self)
+    var fsel06b3: FSEL06b3
+    
+    /* GPIO PIN 07 | PHYSICAL PIN 26 */
+    @ReadWrite(bits: 21..<22, as: Bool.self)
+    var fsel07b1: FSEL07b1
+    @ReadWrite(bits: 22..<23, as: Bool.self)
+    var fsel07b2: FSEL07b2
+    @ReadWrite(bits: 23..<24, as: Bool.self)
+    var fsel07b3: FSEL07b3
+    
+    /* GPIO PIN 08 | PHYSICAL PIN 24 */
+    @ReadWrite(bits: 24..<25, as: Bool.self)
+    var fsel08b1: FSEL08b1
+    @ReadWrite(bits: 25..<26, as: Bool.self)
+    var fsel08b2: FSEL08b2
+    @ReadWrite(bits: 26..<27, as: Bool.self)
+    var fsel08b3: FSEL08b3
+
+    /* GPIO PIN 09 | PHYSICAL PIN 21 */
+    @ReadWrite(bits: 27..<28, as: Bool.self)
+    var fsel09b1: FSEL09b1
+    @ReadWrite(bits: 28..<29, as: Bool.self)
+    var fsel09b2: FSEL09b2
+    @ReadWrite(bits: 29..<30, as: Bool.self)
+    var fsel09b3: FSEL09b3
+    
+    // Bits 31:30 are reserved.
+}
+/* ---------------------------------------------------------------------------------- */
+@Register(bitWidth: 32)
 struct GPFSEL1 {
     /* GPIO PIN 10 | PHYSICAL PIN xx */
     @ReadWrite(bits: 0..<1, as: Bool.self)
