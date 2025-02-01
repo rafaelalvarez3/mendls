@@ -14,7 +14,7 @@ struct UART0 {
     
     @RegisterBlock(offset: 0x201020)    // According to the documentation, this register is not in use.
     var uart0_ilpr: Register<ILPR>      // Added anyway as my research notes indicate that ILPR should
-                                        // be initialized.
+                                        // be initialized. Test functionality later.
     @RegisterBlock(offset: 0x201024)
     var uart0_ibrd: Register<IBRD>
     
