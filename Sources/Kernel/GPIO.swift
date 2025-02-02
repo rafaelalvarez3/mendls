@@ -18,6 +18,24 @@ struct GPIO {
     @RegisterBlock(offset: 0x20002c)
     var gpclr1: Register<GPCLR1>
     
+    @RegisterBlock(offset: 0x200034)
+    var gplev0: Register<GPLEV0>
+    
+    @RegisterBlock(offset: 0x200038)
+    var gplev1: Register<GPLEV1>
+    
+    @RegisterBlock(offset: 0x200040)
+    var gpeds0: Register<GPEDS0>
+    
+    @RegisterBlock(offset: 0x200044)
+    var gpeds1: Register<GPEDS1>
+    
+    @RegisterBlock(offset: 0x200064)
+    var gphen0: Register<GPHEN0>
+    
+    @RegisterBlock(offset: 0x200068)
+    var gphen1: Register<GPHEN1>
+    
 }
 /* ---------------------------------------------------------------------------------- */
 @Register(bitWidth: 32)
