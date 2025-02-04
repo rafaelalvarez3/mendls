@@ -2,36 +2,26 @@ import MMIO
 
 let gpio = GPIO(unsafeAddress: 0xFE00_0000)
 
-func setLedOutput() {
-  gpio.gpfsel2.modify {
-    // set Function Select 25 (fsel25) to 001
-    $0.fsel25b1 = true
-    $0.fsel25b2 = false
-    $0.fsel25b3 = false
-  }
-}
+// add miniUART here
 
-func ledOn() {
-  gpio.gpset0.modify {
-    $0.set = true
-  }
-}
-
-func ledOff() {
-  gpio.gpclr0.modify {
-    $0.clear = true
-  }
+func enableMiniUART(Void) -> Void {
+    gpio.gpfsel1.modify {
+        $0.fsel14b1 = false     // Enables alternate function 5 for GPIO Pin 14
+        $0.fsel14b2 = true
+        $0.fsel14b3 = false
+        
+        $0.fsel15b1 = false     // Enables alternate function 5 for GPIO Pin 15
+        $0.fsel15b2 = true
+        $0.fsel15b3 = false
+    }
 }
 
 @main
 struct KernelMain {
     static func main() {
-        setLedOutput()
+        enableMiniUART()
         while true {
-            ledOn()
-            for _ in 1..<100000 {}  // just a delay
-            ledOff()
-            for _ in 1..<100000 {}  // just a delay
+            // Code here
         }
     }
 }
