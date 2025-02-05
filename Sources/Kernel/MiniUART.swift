@@ -3,43 +3,43 @@ import MMIO
 @RegisterBlock
 struct MiniUART {
 
-    @RegisterBlock(offset: 0x215000)
+    @RegisterBlock(offset: 0x00)
     var AUXILIARY_INTERRUPT_STATUS: Register<AUX_IRQ>
     
-    @RegisterBlock(offset: 0x215004)
+    @RegisterBlock(offset: 0x04)
     var AUXILIARY_ENABLES: Register<AUX_ENABLES>
     
-    @RegisterBlock(offset: 0x215040)
+    @RegisterBlock(offset: 0x40)
     var MINI_UART_IO_DATA: Register<AUX_MU_IO_REG>
     
-    @RegisterBlock(offset: 0x215044)
+    @RegisterBlock(offset: 0x44)
     var MINI_UART_INTERRUPT_ENABLE: Register<AUX_MU_IER_REG>
     
-    @RegisterBlock(offset: 0x215048)
+    @RegisterBlock(offset: 0x48)
     var MINI_UART_INTERRUPT_IDENTIFY: Register<AUX_MU_IIR_REG>
     
-    @RegisterBlock(offset: 0x21504c)
+    @RegisterBlock(offset: 0x4c)
     var MINI_UART_LINE_CONTROL: Register<AUX_MU_LCR_REG>
     
-    @RegisterBlock(offset: 0x215050)
+    @RegisterBlock(offset: 0x50)
     var MINI_UART_MODEM_CONTROL: Register<AUX_MU_MCR_REG>
     
-    @RegisterBlock(offset: 0x215054)
+    @RegisterBlock(offset: 0x54)
     var MINI_UART_LINE_STATUS: Register<AUX_MU_LSR_REG>
     
-    @RegisterBlock(offset: 0x215058)
+    @RegisterBlock(offset: 0x58)
     var MINI_UART_MODEM_STATUS: Register<AUX_MU_MSR_REG>
     
-    @RegisterBlock(offset: 0x21505c)
+    @RegisterBlock(offset: 0x5c)
     var MINI_UART_SCRATCH: Register<AUX_MU_SCRATCH>
     
-    @RegisterBlock(offset: 0x215060)
+    @RegisterBlock(offset: 0x60)
     var MINI_UART_EXTRA_CONTROL: Register<AUX_MU_CNTL_REG>
     
-    @RegisterBlock(offset: 0x215064)
+    @RegisterBlock(offset: 0x64)
     var MINI_UART_EXTRA_STATUS: Register<AUX_MU_STAT_REG>
     
-    @RegisterBlock(offset: 0x215068)
+    @RegisterBlock(offset: 0x68)
     var MINI_UART_BAUDRATE: Register<AUX_MU_BAUD_REG>
     
 }
@@ -141,3 +141,121 @@ struct AUX_MU_LCR_REG {
     var data_size: DATA_SIZE
     
 }
+
+/* ---------------------------------------------------------------------------------- */
+
+@Register(bitWidth: 32)
+struct AUX_MU_MCR_REG {
+    
+    @Reserved(bits: 2..<32)
+    
+    @ReadWrite(bits: 1..<2)
+    var rts: RTS
+    
+    @Reserved(bits: 0..<1)
+    
+}
+
+/* ---------------------------------------------------------------------------------- */
+
+@Register(bitWidth: 32)
+struct AUX_MU_LSR_REG {
+    // map bits
+}
+
+/* ---------------------------------------------------------------------------------- */
+
+@Register(bitWidth: 32)
+struct AUX_MU_MSR_REG {
+    
+    @Reserved(bits: 5..<32)
+    
+    @ReadOnly(bits: 4..5)
+    var cts_status: CTS_STATUS
+    
+    @Reserved(bits: 0..<4)
+    
+}
+
+/* ---------------------------------------------------------------------------------- */
+
+@Register(bitWidth: 32)
+struct AUX_MU_SCRATCH {
+    
+    @Reserved(bits: 8..<32)
+    
+    @ReadWrite(bits: 0..<8)
+    var scratch: SCRATCH
+    
+}
+
+/* ---------------------------------------------------------------------------------- */
+
+@Register(bitWidth: 32)
+struct AUX_MU_CNTL_REG {
+    // map bits
+}
+
+/* ---------------------------------------------------------------------------------- */
+
+@Register(bitWidth: 32)
+struct AUX_MU_STAT_REG {
+    
+    @Reserved(bits: 28..<32)
+    
+    @ReadOnly(bits: 24..<28)
+    var transmit_fifo_fill_level: TRANSMIT_FIFO_FILL_LEVEL
+    
+    @Reserved(bits: 20..<24)
+    
+    @ReadOnly(bits: 16..<20)
+    var receive_fifo_fill_level: RECEIVE_FIFO_FILL_LEVEL
+    
+    @Reserved(bits: 10..<16)
+    
+    @ReadOnly(bits: 9..<10)
+    var transmitter_done: TRANSMITTER_DONE
+    
+    @ReadOnly(bits: 8..<9)
+    var transmit_fifo_is_empty: TRANSMIT_FIFO_IS_EMPTY
+    
+    @ReadOnly(bits: 7..<8)
+    var cts_line: CTS_LINE
+    
+    @ReadOnly(bits: 6..<7)
+    var rts_status: RTS_STATUS
+    
+    @ReadOnly(bits: 5..<6)
+    var transmit_fifo_is_full: TRANSMIT_FIFO_IS_FULL
+    
+    @ReadOnly(bits: 4..<5)
+    var receiver_overrun: RECEIVER_OVERRUN
+    
+    @ReadOnly(bits: 3..<4)
+    var transmitter_is_idle: TRANSMITTER_IS_IDLE
+    
+    @ReadOnly(bits: 2..<3)
+    var receiver_is_idle: RECEIVER_IS_IDLE
+    
+    @ReadOnly(bits: 1..<2)
+    var space_available: SPACE_AVAILABLE
+    
+    @ReadOnly(bits: 0..<1)
+    var symbol_available: SYMBOL_AVAILABLE
+    
+    
+}
+
+/* ---------------------------------------------------------------------------------- */
+
+@Register(bitWidth: 32)
+struct AUX_MU_BAUD_REG {
+    
+    @Reserved(bits: 16..<32)
+    
+    @ReadWrite(bits: 0..<16)
+    var baudrate: BAUDRATE
+    
+}
+
+/* ---------------------------------------------------------------------------------- */
