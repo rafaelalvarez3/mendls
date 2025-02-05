@@ -43,3 +43,45 @@ struct MiniUART {
     var MINI_UART_BAUDRATE: Register<AUX_MU_BAUD_REG>
     
 }
+/* ---------------------------------------------------------------------------------- */
+
+@Register(bitWidth: 32)
+struct AUX_IRQ {
+    
+    @ReadOnly(bits: 0..<1, as: Bool.self)
+    var mini_uart_irq: MINI_UART_IRQ
+    
+    @ReadOnly(bits: 1..<2, as: Bool.self)
+    var spi_one_irq: SPI_ONE_IRQ
+    
+    @ReadOnly(bits: 2..<3, as: Bool.self)
+    var spi_two_irq: SPI_TWO_IRQ
+    
+    @Reserved(bits: 3..<32)
+    
+}
+
+/* ---------------------------------------------------------------------------------- */
+
+@Register(bitWidth: 32)
+struct AUX_ENABLES {
+    
+    @ReadWrite(bits: 0..<1, as: Bool.self)
+    var mini_uart_enable: MINI_UART_ENABLE
+    
+    @ReadWrite(bits: 1..<2, as: Bool.self)
+    var spi_one_enable: SPI_ONE_ENABLE
+    
+    @ReadWrite(bits: 2..<3, as: Bool.self)
+    var spi_two_enable: SPI_TWO_ENABLE
+    
+    @Reserved(bits: 3..<32)
+    
+}
+
+/* ---------------------------------------------------------------------------------- */
+
+@Register(bitWidth: 32)
+struct AUX_MU_LCR_REG {
+    
+}
