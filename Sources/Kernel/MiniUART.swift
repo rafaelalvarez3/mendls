@@ -111,7 +111,7 @@ struct AUX_MU_IER_REG {
     var enable_receive_interrupt: ENABLE_RECEIVE_INTERRUPT
     
     @ReadWrite(bits: 0..<1, as: Bool.self)
-    var enable_receive_interrupt: ENABLE_RECEIVE_INTERRUPT
+    var enable_transmit_interrupt: ENABLE_TRANSMIT_INTERRUPT
     
 }
 
