@@ -119,7 +119,27 @@ struct AUX_MU_IER_REG {
 
 @Register(bitWidth: 32)
 struct AUX_MU_IIR_REG {
-    // map bits
+    
+    @Reserved(bits: 8..<32)
+    
+    @ReadOnly(bits: 6..<8)
+    var fifo_enables: FIFO_ENABLES
+    
+    @ReadOnly(bits: 4..<6)                              // Not in use, but it should be
+    var always_zero: ALWAYS_ZERO                        // mapped and known.
+    
+    @ReadOnly(bits: 3..<4)                              // Not in use, but it should be
+    var always_zero_no_timeout: ALWAYS_ZERO_NO_TIMEOUT  // mapped and known.
+    
+    @ReadWrite(bits: 2..<3, as: Bool.self)
+    var interrupt_fifo_rw_bit_two: INTERRUPT_FIFO_RW_BIT_TWO
+    
+    @ReadWrite(bits: 1..<2, as: Bool.self)
+    var interrupt_fifo_rw_bit_one: INTERRUPT_FIFO_RW_BIT_ONE
+    
+    @ReadOnly(bits: 0..<1)
+    var interrupt_pending: INTERRUPT_PENDING
+    
 }
 
 /* ---------------------------------------------------------------------------------- */
