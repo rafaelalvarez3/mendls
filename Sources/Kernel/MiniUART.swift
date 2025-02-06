@@ -160,7 +160,23 @@ struct AUX_MU_MCR_REG {
 
 @Register(bitWidth: 32)
 struct AUX_MU_LSR_REG {
-    // map bits
+    
+    @Reserved(bits: 7..<32)
+    
+    @ReadOnly(bits: 6..<7)
+    var transmitter_idle: TRANSMITTER_IDLE
+    
+    @ReadOnly(bits: 5..<6)
+    var transmitter_empty: TRANSMITTER_EMPTY
+    
+    @Reserved(bits: 2..<5)
+    
+    @ReadOnly(bits: 1..<2)
+    var receiver_overrun: RECEIVER_OVERRUN
+    
+    @ReadOnly(bits: 0..<1)
+    var data_ready: DATA_READY
+    
 }
 
 /* ---------------------------------------------------------------------------------- */
