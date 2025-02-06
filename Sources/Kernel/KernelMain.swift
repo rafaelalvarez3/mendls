@@ -1,6 +1,8 @@
 import MMIO
 
-let gpio = GPIO(unsafeAddress: 0xFE00_0000)
+let gpio = GPIO(unsafeAddress: 0xfe00_0000)
+
+let miniuart = MiniUART(unsafeAddress: 0x7e21_5000)
 
 // add miniUART here
 

@@ -3,37 +3,37 @@ import MMIO
 @RegisterBlock
 struct GPIO {
     
-    @RegisterBlock(offset: 0x200004)
+    @RegisterBlock(offset: 0x04)
     var gpfsel1: Register<GPFSEL1>
     
-    @RegisterBlock(offset: 0x20001c)
+    @RegisterBlock(offset: 0x1c)
     var gpset0: Register<GPSET0>
     
-    @RegisterBlock(offset: 0x200020)
+    @RegisterBlock(offset: 0x20)
     var gpset1: Register<GPSET1>
     
-    @RegisterBlock(offset: 0x200028)
+    @RegisterBlock(offset: 0x28)
     var gpclr0: Register<GPCLR0>
     
-    @RegisterBlock(offset: 0x20002c)
+    @RegisterBlock(offset: 0x2c)
     var gpclr1: Register<GPCLR1>
     
-    @RegisterBlock(offset: 0x200034)
+    @RegisterBlock(offset: 0x34)
     var gplev0: Register<GPLEV0>
     
-    @RegisterBlock(offset: 0x200038)
+    @RegisterBlock(offset: 0x38)
     var gplev1: Register<GPLEV1>
     
-    @RegisterBlock(offset: 0x200040)
+    @RegisterBlock(offset: 0x40)
     var gpeds0: Register<GPEDS0>
     
-    @RegisterBlock(offset: 0x200044)
+    @RegisterBlock(offset: 0x44)
     var gpeds1: Register<GPEDS1>
     
-    @RegisterBlock(offset: 0x200064)
+    @RegisterBlock(offset: 0x64)
     var gphen0: Register<GPHEN0>
     
-    @RegisterBlock(offset: 0x200068)
+    @RegisterBlock(offset: 0x68)
     var gphen1: Register<GPHEN1>
     
 }
