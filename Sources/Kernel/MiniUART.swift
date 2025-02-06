@@ -229,7 +229,33 @@ struct AUX_MU_SCRATCH {
 
 @Register(bitWidth: 32)
 struct AUX_MU_CNTL_REG {
-    // map bits
+    
+    @Reserved(bits: 8..<32)
+    
+    @ReadWrite(bits: 7..<8)
+    var cts_assert_level: CTS_ASSERT_LEVEL
+    
+    @ReadWrite(bits: 6..<7)
+    var rts_assert_level: RTS_ASSERT_LEVEL
+    
+    @ReadWrite(bits: 5..<6, as: Bool.self)
+    var rts_auto_flow_level_bit_two: RTS_AUTO_FLOW_LEVEL_BIT_TWO
+    
+    @ReadWrite(bits: 4..<5, as: Bool.self)
+    var rts_auto_flow_level_bit_one: RTS_AUTO_FLOW_LEVEL_BIT_ONE
+    
+    @ReadWrite(bits: 3..<4)
+    var enable_transmit_auto_flow_control_cts: ENABLE_TRANSMIT_AUTO_FLOW_CONTROL_CTS
+    
+    @ReadWrite(bits: 2..<3)
+    var enable_transmit_auto_flow_control_rts: ENABLE_TRANSMIT_AUTO_FLOW_CONTROL_RTS
+    
+    @ReadWrite(bits: 1..<2, as: Bool.self)
+    var transmitter_enable: TRANSMITTER_ENABLE
+    
+    @ReadWrite(bits: 0..<1, as: Bool.self)
+    var receiver_enable: RECEIVER_ENABLE
+    
 }
 
 /* ---------------------------------------------------------------------------------- */
