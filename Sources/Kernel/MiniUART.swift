@@ -49,6 +49,7 @@ struct MiniUART {
 struct AUX_IRQ {
     
     @Reserved(bits: 3..<32)
+    var irq_reserved_bits_1: IRQ_RESERVED_BITS_1
     
     @ReadOnly(bits: 2..<3)
     var spi_two_irq: SPI_TWO_IRQ
@@ -67,6 +68,7 @@ struct AUX_IRQ {
 struct AUX_ENABLES {
     
     @Reserved(bits: 3..<32)
+    var enables_reserved_bits_1: ENABLES_RESERVED_BITS_1
     
     @ReadWrite(bits: 2..<3, as: Bool.self)
     var spi_two_enable: SPI_TWO_ENABLE
@@ -85,6 +87,7 @@ struct AUX_ENABLES {
 struct AUX_MU_IO_REG {
     
     @Reserved(bits: 8..<32)
+    var io_reserved_bits_1: IO_RESERVED_BITS_1
     
     @ReadWrite(bits: 0..<8)
     var ls_eight_bits_baudrate: LS_EIGHT_BITS_BAUDRATE
@@ -103,6 +106,7 @@ struct AUX_MU_IO_REG {
 struct AUX_MU_IER_REG {
     
     @Reserved(bits: 8..<32)
+    var ier_reserved_bits_1: IER_RESERVED_BITS_1
     
     @ReadWrite(bits: 0..<8)
     var ms_eight_bits_baudrate: MS_EIGHT_BITS_BAUDRATE
@@ -121,6 +125,7 @@ struct AUX_MU_IER_REG {
 struct AUX_MU_IIR_REG {
     
     @Reserved(bits: 8..<32)
+    var iir_reserved_bits_1: IIR_RESERVED_BITS_1
     
     @ReadOnly(bits: 6..<8)
     var fifo_enables: FIFO_ENABLES
@@ -139,7 +144,6 @@ struct AUX_MU_IIR_REG {
     
     @ReadOnly(bits: 0..<1)
     var interrupt_pending: INTERRUPT_PENDING
-    
 }
 
 /* ---------------------------------------------------------------------------------- */
@@ -148,6 +152,7 @@ struct AUX_MU_IIR_REG {
 struct AUX_MU_LCR_REG {
     
     @Reserved(bits: 8..<32)
+    var lcr_reserved_bits_2: LCR_RESERVED_BITS_2
     
     @ReadWrite(bits: 6..<7, as: Bool.self)
     var break_condition: BREAK_CONDITION
@@ -156,6 +161,7 @@ struct AUX_MU_LCR_REG {
     var dlab_access: DLAB_ACCESS
     
     @Reserved(bits: 1..<6)
+    var lcr_reserved_bits_1: LCR_RESERVED_BITS_1
     
     @ReadWrite(bits: 0..<1, as: Bool.self)
     var data_size: DATA_SIZE
@@ -168,11 +174,13 @@ struct AUX_MU_LCR_REG {
 struct AUX_MU_MCR_REG {
     
     @Reserved(bits: 2..<32)
+    var mcr_reserved_bits_2: MCR_RESERVED_BITS_2
     
     @ReadWrite(bits: 1..<2)
     var rts: RTS
     
     @Reserved(bits: 0..<1)
+    var mcr_reserved_bits_1: MCR_RESERVED_BITS_1
     
 }
 
@@ -182,6 +190,7 @@ struct AUX_MU_MCR_REG {
 struct AUX_MU_LSR_REG {
     
     @Reserved(bits: 7..<32)
+    var lsr_reserved_bits_2: LSR_RESERVED_BITS_2
     
     @ReadOnly(bits: 6..<7)
     var transmitter_idle: TRANSMITTER_IDLE
@@ -190,6 +199,7 @@ struct AUX_MU_LSR_REG {
     var transmitter_empty: TRANSMITTER_EMPTY
     
     @Reserved(bits: 2..<5)
+    var lsr_reserved_bits_1: LSR_RESERVED_BITS_1
     
     @ReadOnly(bits: 1..<2)
     var receiver_overrun: RECEIVER_OVERRUN
@@ -205,12 +215,13 @@ struct AUX_MU_LSR_REG {
 struct AUX_MU_MSR_REG {
     
     @Reserved(bits: 5..<32)
+    var msr_reserved_bits_2: MSR_RESERVED_BITS_2
     
-    @ReadOnly(bits: 4..5)
+    @ReadOnly(bits: 4..<5)
     var cts_status: CTS_STATUS
     
     @Reserved(bits: 0..<4)
-    
+    var msr_reserved_bits_1: MSR_RESERVED_BITS_1
 }
 
 /* ---------------------------------------------------------------------------------- */
@@ -219,6 +230,7 @@ struct AUX_MU_MSR_REG {
 struct AUX_MU_SCRATCH {
     
     @Reserved(bits: 8..<32)
+    var scratch_reserved_bits_1: SCRATCH_RESERVED_BITS_1
     
     @ReadWrite(bits: 0..<8)
     var scratch: SCRATCH
@@ -231,6 +243,7 @@ struct AUX_MU_SCRATCH {
 struct AUX_MU_CNTL_REG {
     
     @Reserved(bits: 8..<32)
+    var cntl_reserved_bits_1: CNTL_RESERVED_BITS_1
     
     @ReadWrite(bits: 7..<8)
     var cts_assert_level: CTS_ASSERT_LEVEL
@@ -264,16 +277,19 @@ struct AUX_MU_CNTL_REG {
 struct AUX_MU_STAT_REG {
     
     @Reserved(bits: 28..<32)
+    var stat_reserved_bits_3: STAT_RESERVED_BITS_3
     
     @ReadOnly(bits: 24..<28)
     var transmit_fifo_fill_level: TRANSMIT_FIFO_FILL_LEVEL
     
     @Reserved(bits: 20..<24)
+    var stat_reserved_bits_2: STAT_RESERVED_BITS_2
     
     @ReadOnly(bits: 16..<20)
     var receive_fifo_fill_level: RECEIVE_FIFO_FILL_LEVEL
     
     @Reserved(bits: 10..<16)
+    var stat_reserved_bits_1: STAT_RESERVED_BITS_1
     
     @ReadOnly(bits: 9..<10)
     var transmitter_done: TRANSMITTER_DONE
@@ -305,7 +321,6 @@ struct AUX_MU_STAT_REG {
     @ReadOnly(bits: 0..<1)
     var symbol_available: SYMBOL_AVAILABLE
     
-    
 }
 
 /* ---------------------------------------------------------------------------------- */
@@ -314,6 +329,7 @@ struct AUX_MU_STAT_REG {
 struct AUX_MU_BAUD_REG {
     
     @Reserved(bits: 16..<32)
+    var baud_reserved_bits_1: BAUD_RESERVED_BITS_1
     
     @ReadWrite(bits: 0..<16)
     var baudrate: BAUDRATE
